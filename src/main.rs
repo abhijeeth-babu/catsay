@@ -1,12 +1,12 @@
 use clap::Parser;
 
 #[derive(Parser)]
-struct Options {
+struct Arguments {
     message: String // input message
 }
 fn main() {
-    let options = Options::parse();
-    let message = options.message;
+    let args = Arguments::parse();
+    let message = args.message;
     println!("{}", message);
     println!(" \\");
     println!("  \\");
