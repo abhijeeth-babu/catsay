@@ -1,6 +1,12 @@
+use clap::Parser;
+
+#[derive(Parser)]
+struct Options {
+    message: String // input message
+}
 fn main() {
-    let message = std::env::args().nth(1)
-    .expect("Missing the message. Usage: catsay <message>");
+    let options = Options::parse();
+    let message = options.message;
     println!("{}", message);
     println!(" \\");
     println!("  \\");
