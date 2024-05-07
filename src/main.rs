@@ -16,7 +16,7 @@ struct Arguments {
     catfile: Option<std::path::PathBuf>,
 }
 
-static DEFAULT_CAT: &str = "ascii_art/cat.txt";
+static DEFAULT_CAT: &str = " ∧,,,∧\n({eye} · {eye})\n/    づ{heart} ";
 fn main() {
     let args = Arguments::parse();
     run(args);
@@ -36,7 +36,7 @@ fn run(args: Arguments) {
             cat = std::fs::read_to_string(path).unwrap_or_else(|e| panic!("{}", e));
         }
         None => {
-            cat = std::fs::read_to_string(DEFAULT_CAT).unwrap_or_else(|e| panic!("{}", e));
+            cat = DEFAULT_CAT.to_string();
 
             if args.dead {
                 cat = cat.replace("{eye}", &"\u{02e3}".red().bold().to_string());
