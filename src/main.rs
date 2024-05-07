@@ -1,5 +1,6 @@
 use clap::Parser;
 use colored::Colorize;
+use anyhow::{Context, Result};
 
 #[derive(Parser)]
 struct Arguments {
@@ -17,7 +18,7 @@ struct Arguments {
 }
 
 static DEFAULT_CAT: &str = " ∧,,,∧\n({eye} · {eye})\n/    づ{heart} ";
-fn main() -> Result<(), Box<dyn std::error::Error>> {
+fn main() -> Result<()> {
     let args = Arguments::parse();
     let message = args.message;
 
@@ -29,7 +30,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     match args.catfile {
         Some(path) => {
-            cat = std::fs::read_to_string(path)?;
+            cat = std::fs::read_to_string(&path)
+                    .with_context(
+                        || format!("Could not read file {:?}", path)
+                    )?;
         }
         None => {
             cat = DEFAULT_CAT.to_string();
