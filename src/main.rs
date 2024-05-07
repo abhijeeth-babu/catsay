@@ -1,10 +1,14 @@
+use std::io::Read;
+
 use clap::Parser;
 use colored::Colorize;
 use anyhow::{Context, Result};
 
-#[derive(Parser)]
+#[derive(Parser, Default, Debug)]
+#[command(author="abhi", version, about)]
+/// What does the kitty say!
 struct Arguments {
-    #[clap(default_value = "Meow")]
+    #[clap(default_value = "Meow!")]
     /// What does the cat say?
     message: String, // input message
 
@@ -15,12 +19,26 @@ struct Arguments {
     #[clap(short = 'f', long = "file")]
     /// Import ascii art from file
     catfile: Option<std::path::PathBuf>,
+
+    #[clap(short='i', long="stdin")]
+    /// Read message from STDIN
+    stdin: bool,
 }
 
 static DEFAULT_CAT: &str = " ∧,,,∧\n({eye} · {eye})\n/    づ{heart} ";
 fn main() -> Result<()> {
     let args = Arguments::parse();
-    let message = args.message;
+    let mut message: String = String::new();
+
+    if args.stdin {
+        std::io::stdin().read_to_string(&mut message)
+            .with_context(
+                || "Could not read from stdin"
+            )?;
+        message.pop();
+    } else {
+        message = args.message;
+    }
 
     if message.to_lowercase() == "woof" {
         eprintln!("Kitties don't bark! They meow!")
