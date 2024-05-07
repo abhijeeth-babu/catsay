@@ -31,6 +31,7 @@ catsay.exe [OPTIONS] [MESSAGE]
 
 - `-d, --dead`: Makes the cat appear deceased (eyes closed, tongue out).
 - `-f, --file <CATFILE>`: Imports a custom cat ASCII art file (must be valid ASCII art).
+- `-i, --stdin`: Read message from STDIN
 - `-h, --help`: Prints this helpful usage information.
 
 ## Examples
