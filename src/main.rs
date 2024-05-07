@@ -1,11 +1,11 @@
 use std::io::Read;
 
+use anyhow::{Context, Result};
 use clap::Parser;
 use colored::Colorize;
-use anyhow::{Context, Result};
 
 #[derive(Parser, Default, Debug)]
-#[command(author="abhi", version, about)]
+#[command(author = "abhi", version, about)]
 /// What does the kitty say!
 struct Arguments {
     #[clap(default_value = "Meow!")]
@@ -20,7 +20,7 @@ struct Arguments {
     /// Import ascii art from file
     catfile: Option<std::path::PathBuf>,
 
-    #[clap(short='i', long="stdin")]
+    #[clap(short = 'i', long = "stdin")]
     /// Read message from STDIN
     stdin: bool,
 }
@@ -31,10 +31,9 @@ fn main() -> Result<()> {
     let mut message: String = String::new();
 
     if args.stdin {
-        std::io::stdin().read_to_string(&mut message)
-            .with_context(
-                || "Could not read from stdin"
-            )?;
+        std::io::stdin()
+            .read_to_string(&mut message)
+            .with_context(|| "Could not read from stdin")?;
         message.pop();
     } else {
         message = args.message;
@@ -49,9 +48,7 @@ fn main() -> Result<()> {
     match args.catfile {
         Some(path) => {
             cat = std::fs::read_to_string(&path)
-                    .with_context(
-                        || format!("Could not read file {:?}", path)
-                    )?;
+                .with_context(|| format!("Could not read file {:?}", path))?;
         }
         None => {
             cat = DEFAULT_CAT.to_string();
