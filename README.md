@@ -39,19 +39,19 @@ catsay.exe [OPTIONS] [MESSAGE]
 1. **Basic Meow:**
 
 ```powershell
-catsay.exe Hello, world!
+catsay.exe "Hello, world!"
 ```
 
 2. **"Dead" Cat:**
 
 ```powershell
-catsay.exe --dead I'm not feeling well... (눈‸눈)
+catsay.exe --dead "I'm not feeling well... (눈‸눈)"
 ```
 
 3. **Custom Cat Art (assuming 'mycat.txt' contains valid ASCII art):**
 
 ```powershell
-catsay.exe -f mycat.txt This is my custom cat!
+catsay.exe -f mycat.txt "This is my custom cat!"
 ```
 
 **Built-in Cat Art**
