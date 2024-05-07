@@ -33,17 +33,6 @@ fn cat_is_dead() {
         .stdout(predicate::str::contains("\u{02e3}"));
 }
 
-// #[test]
-// fn cat_can_read() {
-//     Command::cargo_bin("catsay")
-//         .expect("binary doesnt exist")
-//         .args(&["-i"])
-//         .stdin(Stdio::from())
-//         .assert()
-//         .success()
-//         .stdout(predicate::str::contains("♡"));
-// }
-
 #[test]
 fn cat_can_read() {
     let mut child = Command::cargo_bin("catsay")
