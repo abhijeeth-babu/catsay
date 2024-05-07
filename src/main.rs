@@ -1,8 +1,7 @@
-use std::io::Read;
-
 use anyhow::{Context, Result};
 use clap::Parser;
 use colored::Colorize;
+use std::io::Read;
 
 #[derive(Parser, Default, Debug)]
 #[command(author = "abhi", version, about)]
