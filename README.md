@@ -9,6 +9,7 @@
 - Customize your cat's message with ease.
 - Optionally depict the cat as deceased (for those dramatic moments).
 - Import unique cat ASCII art from your own files.
+- Read from the stdin.
 
 ## Installation
 
