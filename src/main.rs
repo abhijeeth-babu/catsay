@@ -55,14 +55,16 @@ fn main() -> Result<()> {
             if args.dead {
                 cat = cat.replace("{eye}", &"\u{02e3}".red().bold().to_string());
                 cat = cat.replace("{heart}", "\u{1f480}");
+                message = message.bright_black().underline().on_red().to_string();
             } else {
                 cat = cat.replace("{eye}", &"•".green().bold().to_string());
                 cat = cat.replace("{heart}", &"♡".red().to_string());
+                message = message.bright_black().underline().on_green().to_string();
             }
         }
     }
 
-    println!("{}", message.bright_yellow().underline().on_purple());
+    println!("{}", message);
     println!(" \\");
     println!("  \\");
     println!("{}", cat);
